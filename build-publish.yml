@@ -87,8 +87,6 @@ jobs:
           script: |
             docker login -u danpetersonoi --password-stdin <<<$(DockerHubAccessToken) 2>/dev/null
 
-            docker tag oneidentity/safeguard-devops:$(VersionString)-alpine3.12 oneidentity/safeguard-devops:$(VersionString)-alpine
-            docker tag oneidentity/safeguard-devops:$(VersionString)-alpine3.12 oneidentity/safeguard-devops:latest
             docker push oneidentity/safeguard-devops:$(VersionString)-alpine3.12
             docker push oneidentity/safeguard-devops:$(VersionString)-alpine
             docker push oneidentity/safeguard-devops:latest
@@ -121,7 +119,6 @@ jobs:
           script: |
             docker login -u danpetersonoi --password-stdin <<<$(DockerHubAccessToken) 2>/dev/null
 
-            docker tag oneidentity/safeguard-devops:$(VersionString)-ubuntu20.04 oneidentity/safeguard-devops:$(VersionString)-ubuntu
             docker push oneidentity/safeguard-devops:$(VersionString)-ubuntu20.04
             docker push oneidentity/safeguard-devops:$(VersionString)-ubuntu
 

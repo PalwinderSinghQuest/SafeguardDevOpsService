@@ -14,8 +14,9 @@ steps:
 
   - task: Bash@3
     inputs:
-      targetType: 'filePath'
-      filePath: '$(System.DefaultWorkingDirectory)/build-docker.sh'
-      arguments: $(imageType) $(VersionString)
+      targetType: 'inline'
+      script: |
+        $(System.DefaultWorkingDirectory)/build-docker.sh $(imageType) $(VersionString)
+        docker tag oneidentity/safeguard-devops:$(VersionString)-$(imageType) oneidentity/safeguard-devops:latest
       failOnStderr: true
     displayName: 'Building docker image'
