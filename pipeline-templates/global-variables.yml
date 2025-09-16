@@ -14,7 +14,7 @@ variables:
   - name: semanticVersion
     value: "8.2.0"
   - name: isPrerelease
-    value: ${{ false }}
+    value: ${{ true }}
   - name: isReleaseBranch
     value: $[ or( eq(variables['Build.SourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release-') ) ]
   - name: NODE_OPTIONS
