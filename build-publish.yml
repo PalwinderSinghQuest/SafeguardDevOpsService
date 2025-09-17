@@ -75,7 +75,7 @@ jobs:
       - template: pipeline-templates/linux-build-steps.yml
       - task: AzureKeyVault@2
         inputs:
-          azureSubscription: 'OneIdentity.RD.SBox.Safeguard-ServiceConnection'
+          azureSubscription: 'SafeguardOpenSource'
           KeyVaultName: 'SafeguardBuildSecrets'
           SecretsFilter: 'DockerHubAccessToken,DockerHubPassword'
         displayName: 'Get Docker Hub Access Token from Sandbox Azure Key Vault'
@@ -87,9 +87,6 @@ jobs:
           script: |
             docker login -u danpetersonoi --password-stdin <<<$(DockerHubAccessToken) 2>/dev/null
 
-            docker tag oneidentity/safeguard-devops:$(VersionString)-alpine3.12 oneidentity/safeguard-devops:$(VersionString)-alpine
-            docker tag oneidentity/safeguard-devops:$(VersionString)-alpine3.12 oneidentity/safeguard-devops:latest
-            docker push oneidentity/safeguard-devops:$(VersionString)-alpine3.12
             docker push oneidentity/safeguard-devops:$(VersionString)-alpine
             docker push oneidentity/safeguard-devops:latest
 
@@ -109,7 +106,7 @@ jobs:
       - template: pipeline-templates/linux-build-steps.yml
       - task: AzureKeyVault@2
         inputs:
-          azureSubscription: 'OneIdentity.RD.SBox.Safeguard-ServiceConnection'
+          azureSubscription: 'SafeguardOpenSource'
           KeyVaultName: 'SafeguardBuildSecrets'
           SecretsFilter: 'DockerHubAccessToken,DockerHubPassword'
         displayName: 'Get Docker Hub Access Token from Sandbox Azure Key Vault'
@@ -121,8 +118,6 @@ jobs:
           script: |
             docker login -u danpetersonoi --password-stdin <<<$(DockerHubAccessToken) 2>/dev/null
 
-            docker tag oneidentity/safeguard-devops:$(VersionString)-ubuntu20.04 oneidentity/safeguard-devops:$(VersionString)-ubuntu
-            docker push oneidentity/safeguard-devops:$(VersionString)-ubuntu20.04
             docker push oneidentity/safeguard-devops:$(VersionString)-ubuntu
 
             docker logout
